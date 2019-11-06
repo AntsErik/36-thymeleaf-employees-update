@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+     <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+    <title>Basketball players Directory</title>
+</head>
+
+<body>
+
+    <div class = "container">
+
+    <h3>The Players</h3>
+    <hr>
+
+    <!-- Add a Add player button -->
+    <a  th:href="@{/employees/showFormForAdd}"
+        class="btn btn-dark btn-sm mb-3">
+        Add Player
+    </a>
+    
+    <table class="table table-dark table-bordered table-striped">
+        <thead class="thead-light">
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            <tr th:each="tempEmployee : ${employees}">
+                <td th:text="${tempEmployee.firstName}"/>
+                <td th:text="${tempEmployee.lastName}"/>
+                <td th:text="${tempEmployee.email}"/>
+            </tr>               
+        </tbody>
+
+    </table>
+    </div>
+
+</body>
+
+</html>
