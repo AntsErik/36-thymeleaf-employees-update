@@ -4,10 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import ee.praktika.springboot.thymeleafdemo.entity.Employee;
 import ee.praktika.springboot.thymeleafdemo.service.EmployeeService;
@@ -56,5 +53,20 @@ public class EmployeeController {
 
         //use a redirect to prevent duplicate submissions
         return "redirect:/employees/list";
+    }
+
+    //add mapping to update employee
+    @GetMapping( "/showFormForUpdate" )
+    public String showFormForUpdate( @RequestParam( "employeeId" ) int theId, Model theModel ){
+
+        //get the employee from the service or db
+        Employee theEmployee = employeeService.findById( theId );
+
+        //set the employee as a model attribute to pre-populate the form
+        theModel.addAttribute( "employee", theEmployee );
+
+        //send this over to our form
+        return "employees/employees-form";
+
     }
 }
